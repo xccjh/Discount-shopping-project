@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "image_src": "https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner1.png",
+      "open_type": "navigate",
+      "goods_id": "55578"
+    },
+    {
+      "image_src": "https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner2.png",
+      "open_type": "navigate",
+      "goods_id": "17927"
+    },
+    {
+      "image_src": "https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner3.png",
+      "open_type": "navigate",
+      "goods_id": "51216"
+    }
+  ],
+  "meta": { "msg": "获取成功", "status": 200 }
+}

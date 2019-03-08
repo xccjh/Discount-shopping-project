@@ -7,13 +7,41 @@
   <title>28-品优购</title>
   <link rel="stylesheet" href="./lib/mui/css/mui.css">
   <link rel="stylesheet" href="./lib/fontawesome/css/font-awesome.css">
-  <link rel="stylesheet" href="./css/common.css">
   <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-  <header>品优购头部</header>
+  <header class="pyg_header">
+    <div class="mui-input-row mui-search">
+      <input type="search" class="mui-input-clear" placeholder="">
+  </div>
+  </header>
+  <div class="pyg_view">
+    <!-- 轮播图 开始 -->
+    <div class="pyg_slide">
+      <div class="mui-slider">
+        <!-- 图片的层级 -->
+        <div class="mui-slider-group mui-slider-loop">
+          <!--支持循环，需要重复图片节点-->
+          <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner3.png" /></a></div>
+          <div class="mui-slider-item"><a href="#"><img src="https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner1.png" /></a></div>
+          <div class="mui-slider-item"><a href="#"><img src="https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner2.png" /></a></div>
+          <div class="mui-slider-item"><a href="#"><img src="https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner3.png" /></a></div>
+          <!--支持循环，需要重复图片节点-->
+          <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner1.png" /></a></div>
+        </div>
+        <!-- 索引器 分页器 -->
+        <div class="mui-slider-indicator">
+            <div class="mui-indicator mui-active"></div>
+            <div class="mui-indicator"></div>
+            <div class="mui-indicator"></div>
+          </div>
+      </div>
+    </div>
+    <!-- 轮播图 结束 -->
+  </div>
+  <footer class="pyg_footer">尾部</footer>
 
-  <div>首页</div>
+
 </body>
 <script src="./lib/mui/js/mui.js"></script>
 <script src="./lib/zepto/zepto.js"></script>
