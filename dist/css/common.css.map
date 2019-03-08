@@ -1,0 +1,1 @@
+{"version":3,"sources":["common.less","common.css"],"names":[],"mappings":"AACA;EACE,gBAAA;ACAF","file":"common.css","sourcesContent":["\r\nbody{\r\n  font-size: 100px;\r\n}","body {\n  font-size: 100px;\n}\n"]}

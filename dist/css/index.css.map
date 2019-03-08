@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.less","index.css"],"names":[],"mappings":"AACA;EACE,kBAAA;ACAF","file":"index.css","sourcesContent":["@baseColor:yellowgreen;\r\ndiv{\r\n  color: @baseColor;\r\n}","div {\n  color: yellowgreen;\n}\n"]}

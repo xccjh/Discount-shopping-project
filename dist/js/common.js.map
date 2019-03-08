@@ -1,0 +1,1 @@
+{"version":3,"sources":["common.js"],"names":["setTimeout","console","log"],"mappings":";;AAAAA,UAAU,CAAC,YAAM;AAEfC,EAAAA,OAAO,CAACC,GAAR,CAAY,UAAZ;AACD,CAHS,EAGP,IAHO,CAAV","sourcesContent":["setTimeout(() => {\r\n  \r\n  console.log(\"commonjs\");\r\n}, 1000);"],"file":"common.js"}
