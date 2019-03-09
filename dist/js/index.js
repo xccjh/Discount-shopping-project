@@ -5,6 +5,7 @@ $(function () {
 
   function init() {
     swiperdata();
+    catitems();
   } // 获取首页轮播图的数据
 
 
@@ -33,6 +34,31 @@ $(function () {
         } else {
           console.log("请求失败", result);
         }
+      }
+    });
+  } // 获取分类菜单数据
+
+
+  function catitems() {
+    // $.ajax({})
+    // $.get(接口的路径，发送到后台去的参数|可以不传，成功的回调函数)
+    $.get("http://api.pyg.ak48.xyz/api/public/v1/home/catitems", function (result) {
+      if (result.meta.status == 200) {
+        // 请求成功
+        // 要渲染的数据 数组
+        var data = result.data; // 要拼接html
+
+        var html = "";
+
+        for (var i = 0; i < data.length; i++) {
+          var tmpHtml = "\n          <a href=\"javascript:;\">\n          <img src=\"".concat(data[i].image_src, "\" alt=\"\">\n           </a>\n          ");
+          html += tmpHtml;
+        } // 把分类的标签 插入到  容器中
+
+
+        $(".pyg_cates").html(html);
+      } else {
+        console.log("请求失败", result);
       }
     });
   }
