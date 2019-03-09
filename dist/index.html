@@ -18,24 +18,7 @@
   <div class="pyg_view">
     <!-- 轮播图 开始 -->
     <div class="pyg_slide">
-      <div class="mui-slider">
-        <!-- 图片的层级 -->
-        <div class="mui-slider-group mui-slider-loop">
-          <!--支持循环，需要重复图片节点-->
-          <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner3.png" /></a></div>
-          <div class="mui-slider-item"><a href="#"><img src="https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner1.png" /></a></div>
-          <div class="mui-slider-item"><a href="#"><img src="https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner2.png" /></a></div>
-          <div class="mui-slider-item"><a href="#"><img src="https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner3.png" /></a></div>
-          <!--支持循环，需要重复图片节点-->
-          <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="https://lg-igjc8p1o-1256763078.cos.ap-shanghai.myqcloud.com/upload/banner1.png" /></a></div>
-        </div>
-        <!-- 索引器 分页器 -->
-        <div class="mui-slider-indicator">
-            <div class="mui-indicator mui-active"></div>
-            <div class="mui-indicator"></div>
-            <div class="mui-indicator"></div>
-          </div>
-      </div>
+
     </div>
     <!-- 轮播图 结束 -->
   </div>
@@ -43,8 +26,39 @@
 
 
 </body>
+<!-- 模板引擎 开始 -->
+<!-- 轮播图的模板 开始 -->
+<script type="text/html" id="swiperTpl" >
+
+      <div class="mui-slider">
+        <!-- 图片的层级 -->
+        <div class="mui-slider-group mui-slider-loop">
+          <!--支持循环，需要重复图片节点-->
+          <!-- 被循环的数组中的最后一张图片 -->
+          <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="{{arr[arr.length-1].image_src}}" /></a></div>
+          {{each arr  item  index}}
+          <div class="mui-slider-item"><a href="#"><img src="{{item.image_src}}" /></a></div>
+          {{/each}}
+          <!--支持循环，需要重复图片节点-->
+          <!-- 获取 第一张 图片 -->
+          <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="{{arr[0].image_src}}" /></a></div>
+        
+        </div>
+        <!-- 索引器 分页器 -->
+        <div class="mui-slider-indicator">
+        
+            {{each arr  item  index}}
+            <div class="mui-indicator  {{index==0?'mui-active':''}}"></div>
+            {{/each}}
+          </div>
+      </div>
+    
+</script>
+<!-- 轮播图的模板 结束 -->
+<!-- 模板引擎 结束 -->
 <script src="./lib/mui/js/mui.js"></script>
 <script src="./lib/zepto/zepto.js"></script>
+<script src="./lib/arttemplate/template-web.js"></script>
 <script src="./js/common.js"></script>
 <script src="./js/index.js"></script>
 </html>
