@@ -46,5 +46,81 @@ body {
 .pyg_footer a i {
   font-size: 18px;
 }
+.pyg_view {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  /* 
+  默认情况下  
+      子项的宽度 =   内容撑开 
+      子项的高度 =    父项的高度  
+   */
+}
+.pyg_view .left_box {
+  width: 80px;
+  overflow: scroll;
+}
+.pyg_view .left_box .left_menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pyg_view .left_box .left_menu li {
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.pyg_view .left_box .left_menu .active {
+  border-left: 5px solid #0094ff;
+  background-color: #fff;
+}
+.pyg_view .right_box {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  overflow: scroll;
+  background-color: #fff;
+}
+.pyg_view .right_box .rigth_item .item_title {
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+  color: #0094ff;
+}
+.pyg_view .right_box .rigth_item .item_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.pyg_view .right_box .rigth_item .item_list li {
+  width: 33.33%;
+}
+.pyg_view .right_box .rigth_item .item_list li a {
+  text-align: center;
+  font-size: 13px;
+  color: #000;
+}
+.pyg_view .right_box .rigth_item .item_list li a img {
+  width: 80%;
+}
 
 /*# sourceMappingURL=category.css.map */
