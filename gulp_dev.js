@@ -59,7 +59,7 @@ gulp.task("js",()=>{
 // 5 处理html 任务
 gulp.task("html",()=>{
   return gulp
-    .src("src/index.html")
+    .src("src/*.html")
     .pipe(
       fileInclude({
         prefix: "@@",

@@ -15,6 +15,7 @@
       <input type="search" class="mui-input-clear" placeholder="">
   </div>
   </header>
+
   <div class="pyg_view">
     <!-- 轮播图 开始 -->
     <div class="pyg_slide"> </div>
@@ -25,8 +26,32 @@
 
     </div>
     <!-- 分类菜单 结束 -->
+
+    <!-- 商品的列表 开始 -->
+    <div class="pyg_goodslist"> 
+
+    </div>
+    <!-- 商品的列表 结束 -->
   </div>
-  <footer class="pyg_footer">尾部</footer>
+ 
+  <footer class="pyg_footer">
+    <a href="index.html">
+      <i class="fa fa-home"></i>
+      <div class="linkname">首页</div>
+    </a>
+    <a href="category.html">
+      <i class="fa fa-list-ul"></i>
+      <div class="linkname">分类</div>
+    </a>
+    <a href="javascript:;">
+      <i class="fa fa-shopping-cart"></i>
+      <div class="linkname">购物车</div>
+    </a>
+    <a href="javascript:;">
+      <i class="fa fa-user"></i>
+      <div class="linkname">首页</div>
+    </a>
+  </footer>
 
 
 </body>
@@ -59,6 +84,36 @@
     
 </script>
 <!-- 轮播图的模板 结束 -->
+
+<!-- 商品列表 模板 开始 -->
+<script type="text/html" id="listTpl"> 
+{{each arr item1  value1}}
+<div class="goods_item">
+    <!-- 大图片 -->
+    <img src="{{item1.group_img}}" alt="" class="group_img">
+    <!-- 小商品列表 -->
+    <ul class="goods">       
+     {{each item1.goods item2 index2}}
+     <li>
+        <!-- 商品的详情 -->
+        <a href="#" class="goods_detail">
+          <!-- 图片 -->
+          <img src="{{item2.goods_small_logo}}" class="goods_small_logo" alt="">
+          <!-- 名称 -->
+          <div class="goods_name">{{item2.goods_name}}</div>
+          <!-- 价格 -->
+          <div class="goods_price">￥{{item2.goods_price}}</div>
+        </a>
+        <!-- 类似 的商品  -->
+        <a href="#" class="goods_similar mui-btn mui-btn-primary mui-btn-outlined">找相似</a>
+      </li>
+     {{/each}}
+    </ul>
+  </div>
+{{/each}}
+  
+</script>
+<!-- 商品列表 模板 结束 -->
 <!-- 模板引擎 结束 -->
 <script src="./lib/mui/js/mui.js"></script>
 <script src="./lib/zepto/zepto.js"></script>

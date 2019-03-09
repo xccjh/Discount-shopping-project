@@ -6,6 +6,7 @@ $(function () {
   function init() {
     swiperdata();
     catitems();
+    goodslist();
   } // 获取首页轮播图的数据
 
 
@@ -59,6 +60,23 @@ $(function () {
         $(".pyg_cates").html(html);
       } else {
         console.log("请求失败", result);
+      }
+    });
+  } // 获取首页商品列表数据
+
+
+  function goodslist() {
+    $.get("http://api.pyg.ak48.xyz/api/public/v1/home/goodslist", function (result) {
+      if (result.meta.status == 200) {
+        //  成功
+        // 获取要渲染的数据
+        var data = result.data; // 生成要渲染的数据
+
+        var html = template("listTpl", {
+          arr: data
+        });
+        $(".pyg_goodslist").html(html);
+      } else {//  失败
       }
     });
   }
