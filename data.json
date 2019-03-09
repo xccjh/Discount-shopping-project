@@ -1,18 +1,36 @@
 {
   "data": [
     {
-      "group_img": "http://image4.suning.cn/uimg/cms/img/149559219946350066.png",
-      "goods": [
+      "cat_id": 266,
+      "cat_name": "电脑办公",
+      "cat_pid": 0,
+      "cat_level": 0,
+      "cat_deleted": false,
+      "cat_icon": "full/none.jpg",
+      "children": [
         {
-          "goods_id": 33464,
-          "goods_name": "荷兰乳牛 学生配方奶粉400克袋装 青少年奶粉 丰富钙铁锌硒 新西兰进口奶源",
-          "goods_price": 28,
-          "goods_big_logo": "http://image1.suning.cn/uimg/b2c/newcatentries/0070078359-000000000171313290_1_800x800.jpg",
-          "goods_small_logo": "http://image1.suning.cn/uimg/b2c/newcatentries/0070078359-000000000171313290_1_400x400.jpg",
-          "cat_id": 372
+          "cat_id": 281,
+          "cat_name": "电脑整机",
+          "cat_pid": 266,
+          "cat_level": 1,
+          "cat_deleted": false,
+          "cat_icon": "full/none.jpg",
+          "children": [
+            {
+              "cat_id": 283,
+              "cat_name": "轻薄本",
+              "cat_pid": 281,
+              "cat_level": 2,
+              "cat_deleted": false,
+              "cat_icon": "full/7097160f74842e8640660218a051ec5efdbf3dd9.jpg"
+            }
+          ]
         }
       ]
     }
   ],
-  "meta": { "msg": "获取成功", "status": 200 }
+  "meta": {
+    "msg": "获取成功",
+    "status": 200
+  }
 }

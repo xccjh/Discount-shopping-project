@@ -68,6 +68,7 @@ body {
 }
 .pyg_view .left_box .left_menu li {
   height: 40px;
+  font-size: 13px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
