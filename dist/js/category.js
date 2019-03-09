@@ -3,12 +3,16 @@
 $(function () {
   /* 
   1 实现了静态布局
-  2 动态渲染数据
+  2 首页动态渲染数据
     1 左侧菜单是全部渲染 
     2 右侧的内容 是 根据左侧 被选中的菜单 才开始 渲染 
     3 写两个方法  (页面用到的数据 只要发送一次请求去获取 就可以提供给下次下次 使用 )
       渲染左边（）
       渲染右边（）
+  3 点击左侧菜单
+    1 左侧菜单被 激活选中
+    2 右侧的内容 动态跟着渲染
+      1 先获取 被点击的li标签的索引
    */
   //  全局变量 存放 接口的返回数据 result.data
   var CateDatas;
@@ -16,6 +20,19 @@ $(function () {
 
   function init() {
     categories();
+    eventList();
+  } // 负责 绑定 页面当中的 一坨事件
+
+
+  function eventList(params) {
+    // 1 左侧菜单的点击事件  委托 委派
+    // touchstart 原生的触屏事件  
+    $(".left_menu ").on("tap", "li", function () {
+      $(this).addClass("active").siblings().removeClass("active"); // 获取 被点击的li标签的索引 $(this).index()
+
+      var index = $(this).index();
+      renderRight(index);
+    });
   } // 1 发请求获取数据
 
 
