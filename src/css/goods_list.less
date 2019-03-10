@@ -1,5 +1,10 @@
 @import "common.less";
 
+
+.pyg_view{
+  position: relative;
+}
+
 .list_header{
   position: fixed;
   top: 0;
@@ -35,13 +40,14 @@
       border-bottom: 1px solid #ccc;
       a{
         display: flex;
+        padding: 10px;
         .item_left{
           flex: 1;
           display: flex;
           justify-content: center;
           align-items: center;
           img{
-            width: 80%;
+            width: 70%;
           }
         }
         .item_right{

@@ -46,6 +46,9 @@ body {
 .pyg_footer a i {
   font-size: 18px;
 }
+.pyg_view {
+  position: relative;
+}
 .list_header {
   position: fixed;
   top: 0;
@@ -84,6 +87,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding: 10px;
 }
 .pyg_view .list li a .item_left {
   -webkit-box-flex: 1;
@@ -100,7 +104,7 @@ body {
           align-items: center;
 }
 .pyg_view .list li a .item_left img {
-  width: 80%;
+  width: 70%;
 }
 .pyg_view .list li a .item_right {
   -webkit-box-flex: 1;
