@@ -26,6 +26,7 @@
   <!-- 模板引擎 开始 -->
   <!-- 右侧内容的模板 开始 -->
   <script type="text/html" id="rightTpl">
+    <div>
     {{each arr item index }}
     <div class="rigth_item">
         <div class="item_title">{{item.cat_name}}</div>
@@ -44,12 +45,14 @@
         </ul>
       </div>
     {{/each}}
+  </div>
    </script>
   <!-- 右侧内容的模板 结束 -->
   <!-- 模板引擎 结束 -->
   <script src="./lib/mui/js/mui.js"></script>
   <script src="./lib/zepto/zepto.js"></script>
   <script src="./lib/arttemplate/template-web.js"></script>
+  <script src="./lib/iscroll/iscroll.js"></script>
   <script src="./js/common.js"></script>
   <script src="./js/category.js"></script>
 </html>

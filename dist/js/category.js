@@ -27,6 +27,18 @@ $(function () {
     3 代码的逻辑  key:cates
       1 先发送请求 获取 数据 再存进去 
       2 在发送请求之前 先获取一下 会话存储中的数据 
+    5 使用iscroll插件来实现 左右两个 弹簧效果 
+      1 必须要引入 插件
+      2 修改样式 有两个滚动条效果
+        1 原生css的滚动条  overflow:hidden;
+        2 iscroll js 实现 滚动效果 
+      3 看着 iscroll的文档来实现效果 
+        1 保证你的标签结构和 文档一致 右侧结构 需做个修改
+        2 使用js来进行初始化 必须保证标签生成了  拥有了高度 再做初始化
+          1 图片标签 都生成 但是内容 不一定马上请求回来 马上拥有高度 
+          2 图片的onload 事件 搭配 js 逻辑来找到 最后一张加载的图片 进行 初始化
+      6 分类页面使用rem单位
+      
    */
   //  全局变量 存放 接口的返回数据 result.data
   var CateDatas;
@@ -115,7 +127,9 @@ $(function () {
     } // 把数据插入到 左侧容器中
 
 
-    $(".left_menu").html(leftHtml);
+    $(".left_menu").html(leftHtml); // 初始化左侧滚动条
+
+    var leftScroll = new IScroll('.left_box');
   } // 3 渲染右边
 
 
@@ -128,7 +142,22 @@ $(function () {
     var rightHtml = template("rightTpl", {
       arr: rightData
     });
-    $(".right_box").html(rightHtml);
+    $(".right_box").html(rightHtml); // 标签肯定已经生成了 但是图片还没有高度 内容 是 缓慢去加载 
+    // 必须等待 最后一张 图片都  加载完了 onload   再做初始化
+    // 最后一张 不是指 索引的最后 一张 而是 最后 加载完毕的一张 
+    // img.onload 事件 会在 图片加载完毕之后 自动触发  
+    // 获取要动态渲染的图片的长度
+
+    var imgLength = $(".right_box img").length;
+    $(".right_box img").on("load", function () {
+      imgLength--;
+
+      if (imgLength === 0) {
+        // console.log("最后一张图片加载完毕了");
+        var rightScroll = new IScroll(".right_box");
+      } // console.log("初始化的次数");
+
+    });
   }
 });
 //# sourceMappingURL=category.js.map
