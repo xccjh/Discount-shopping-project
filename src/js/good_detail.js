@@ -4,6 +4,18 @@ $(function () {
   init()
   function init() {
     goodsDetail();
+    eventList();
+  }
+
+
+  function eventList() {
+    // 绑定 加入购物车 点击 事件
+    $(".shopping_car_btn").on("tap",function () {
+      // 弹出 mui的消息提示框 自动消失
+      mui.toast("您还没有登录");
+      
+    })
+    
   }
 
 

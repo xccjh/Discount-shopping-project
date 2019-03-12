@@ -1,9 +1,7 @@
 @import "common.less";
 
-
-
 // 底部工具栏
-.pyg_footer_tool{
+.pyg_footer_tool {
   display: flex;
   background-color: #fff;
   height: 45px;
@@ -13,24 +11,82 @@
   left: 0;
   border-top: 1px solid #666;
   text-align: center;
-  a{
+  a {
     flex: 1;
   }
-  a:nth-child(-n+2){
+  a:nth-child(-n + 2) {
     color: #333;
-    .contact_name{
+    .contact_name {
       font-size: 12px;
     }
   }
-  a:nth-last-child(-n+2){
+  a:nth-last-child(-n + 2) {
     line-height: 45px;
     font-size: 13px;
     color: #fff;
   }
-  .buy_btn{
+  .buy_btn {
     background-color: #f0ad4e;
   }
-  .shopping_car_btn{
+  .shopping_car_btn {
     background-color: #dd524d;
   }
+}
+
+.pyg_view {
+  background-color: #fff;
+  padding: 0 10px;
+  // 商品的名称
+
+  .gd_goods_name {
+    font-size: 14px;
+  }
+  // 商品的价格
+  .gd_goods_price {
+    color: red;
+    font-size: 20px;
+  }
+  // 物流
+  .logistics {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li{
+        display: flex;
+        font-size: 13px;
+        border-bottom: 1px solid #666;
+        span:nth-child(1){
+          flex: 1;
+          color: #ccc;
+        }
+        span:nth-child(2){
+          flex: 4;
+        }
+      }
+    }
+  }
+  // 商品的信息
+ .gd_info_row{
+   #item2{
+     ul{
+       list-style: none;
+       margin: 0;
+       padding: 0;
+       li{
+         padding: 5px;
+         color: #666;
+         .gi_title{
+           border-bottom: 1px solid #ccc;
+           padding: 5px 0;
+           font-size: 14px;
+         }
+         .gi_content{
+          padding: 5px 0;
+          font-size: 13px;
+         }
+       }
+     }
+   }
+ } 
 }

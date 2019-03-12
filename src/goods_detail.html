@@ -71,12 +71,49 @@
       </div>
       <!-- 商品的价格 -->
       <div class="gd_goods_price">
-          {{goods_price}} 
+          ￥{{goods_price}} 
       </div>
       <!-- 物流 -->
-      <div class="logistics"></div>
+      <div class="logistics">
+        <ul>
+          <li> <span>已选</span> <span>白色</span> </li>
+          <li> <span>促销</span> <span>是</span> </li>
+          <li> <span>送至</span> <span>上海市</span> </li>
+          <li> <span>运费</span> <span>免运费</span> </li>
+        </ul>
+      </div>
       <!-- tab栏数据 详情 -->
-      <div class="gd_info_row"></div> 
+      <div class="gd_info_row">
+        <!-- 标题 -->
+        <div id="segmentedControl" class="mui-segmented-control">
+					<a class="mui-control-item mui-active" href="#item1">图文详情 </a>
+					<a class="mui-control-item" href="#item2"> 规格参数 </a>
+			
+				</div>
+        <!-- 内容 -->
+        <div>
+        <div id="item1" class="mui-control-content  mui-active">
+          <!-- {{goods_introduce}} -->
+          <!-- 模板引擎直接提供了 字符串转标签的功能 只要在 括号里面加一个 @ 就可以了！！ -->
+          {{@  goods_introduce}}
+        </div>
+          <div id="item2" class="mui-control-content">
+            <ul>
+              {{each attrs item index}}
+              <li>
+                <div class="gi_title">{{item.attr_name.split("-")[0]}}</div>
+                <div class="gi_content">
+                  <span>{{item.attr_name.split("-")[1]}}</span>
+         <span>{{item.attr_value}}</span>
+                </div>
+              </li>
+              {{/each}}
+           
+            </ul>
+          </div>
+         
+        </div>
+      </div> 
  </script>
   <!-- 模板引擎 结束 -->
   <script src="./lib/mui/js/mui.js"></script>
