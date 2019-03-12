@@ -59,7 +59,8 @@ $(function () {
   init();
 
   function init() {
-    // 开始调用mui的下拉组件
+    eventList(); // 开始调用mui的下拉组件
+
     mui.init({
       pullRefresh: {
         container: ".pyg_view",
@@ -119,6 +120,16 @@ $(function () {
           }
         }
       }
+    });
+  }
+
+  function eventList() {
+    // 给a标签绑定 tap点击事件 用来进行 点击页面跳转
+    $(".list").on("tap", "a", function () {
+      // 获取a标签身上的 href属性
+      var href = this.href; // 通过js的方式来跳转
+
+      location.href = href;
     });
   } // 获取商品列表数据
 
