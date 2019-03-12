@@ -15,9 +15,10 @@
       <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
     </header>
 
-    <div class="pyg_view">    
+    <div class="pyg_view">
       <!-- 这个里面的内容 全部都是由模板生成  -->
-    </div>  
+
+    </div>
 
     <!-- 底部工具栏 -->
     <div class="pyg_footer_tool">
@@ -29,7 +30,7 @@
         <i class="fa fa-weixin"></i>
         <div class="contact_name">微信</div>
       </a>
-      <a href="javascript:;"  class="buy_btn" >
+      <a href="javascript:;" class="buy_btn">
         立即购买
       </a>
       <a href="javascript:;" class="shopping_car_btn">
@@ -38,7 +39,45 @@
     </div>
   </body>
   <!-- 模板引擎 开始 -->
-
+<script id="mainTpl" type="text/html">
+       <!-- 轮播图 -->
+       <div class="gd_swiper">
+        <div class="mui-slider">
+          <!-- 图片的层级 -->
+          <div class="mui-slider-group mui-slider-loop">
+            <!--支持循环，需要重复图片节点-->
+            <!-- 被循环的数组中的最后一张图片 -->
+            <div class="mui-slider-item mui-slider-item-duplicate"> <a href="#"><img src="{{ pics[pics.length - 1].pics_mid_url }}"/></a> </div>
+            {{each pics  item  index}}
+            <div class="mui-slider-item">
+              <a href="#"><img src="{{ item.pics_mid_url }}"/></a>
+            </div>
+            {{/each}}
+            <!--支持循环，需要重复图片节点-->
+            <!-- 获取 第一张 图片 -->
+            <div class="mui-slider-item mui-slider-item-duplicate"> <a href="#"><img src="{{ pics[0].pics_mid_url }}"/></a> </div>
+          </div>
+          <!-- 索引器 分页器 -->
+          <div class="mui-slider-indicator">
+              {{each pics  item  index}}
+            <div class="mui-indicator {{index==0?'mui-active':''}}"></div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <!-- 商品的名称 -->
+      <div class="gd_goods_name">
+        {{goods_name}} 
+      </div>
+      <!-- 商品的价格 -->
+      <div class="gd_goods_price">
+          {{goods_price}} 
+      </div>
+      <!-- 物流 -->
+      <div class="logistics"></div>
+      <!-- tab栏数据 详情 -->
+      <div class="gd_info_row"></div> 
+ </script>
   <!-- 模板引擎 结束 -->
   <script src="./lib/mui/js/mui.js"></script>
   <script src="./lib/zepto/zepto.js"></script>
