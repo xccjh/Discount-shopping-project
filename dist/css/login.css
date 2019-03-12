@@ -73,27 +73,10 @@ body {
 .pyg_view {
   padding: 10px;
 }
-.pyg_view form .vcode_row {
-  position: relative;
-}
-.pyg_view form .vcode_row .get_code_btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: auto;
-  padding: 6px;
-}
-.pyg_view .register_tool {
-  margin-top: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-.pyg_view .register_tool a {
-  width: 48%;
+.pyg_view .btm_tool a {
+  margin-top: 15px;
+  display: block;
+  width: 100%;
 }
 
-/*# sourceMappingURL=register.css.map */
+/*# sourceMappingURL=login.css.map */

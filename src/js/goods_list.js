@@ -59,6 +59,7 @@ $(function() {
 
   init();
   function init() {
+
     eventList();
     // 开始调用mui的下拉组件
     mui.init({

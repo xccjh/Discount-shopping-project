@@ -3,6 +3,7 @@ $(function() {
 
   // js一加载就执行的 方法 入口
   function init() {
+
     swiperdata();
     catitems();
     goodslist();
@@ -41,7 +42,7 @@ $(function() {
   function catitems() {
     // $.ajax({})
     // $.get(接口的路径，发送到后台去的参数|可以不传，成功的回调函数)
-
+ 
     $.get("http://api.pyg.ak48.xyz/api/public/v1/home/catitems", result => {
       if (result.meta.status == 200) {
         // 请求成功
@@ -69,6 +70,7 @@ $(function() {
 
   // 获取首页商品列表数据
   function goodslist() {
+ 
     $.get("http://api.pyg.ak48.xyz/api/public/v1/home/goodslist",(result)=>{
    if(result.meta.status==200){
     //  成功
