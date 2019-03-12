@@ -1,34 +1,5 @@
 {
-  "data": [
-    {
-      "cat_id": 266,
-      "cat_name": "电脑办公",
-      "cat_pid": 0,
-      "cat_level": 0,
-      "cat_deleted": false,
-      "cat_icon": "full/none.jpg",
-      "children": [
-        {
-          "cat_id": 281,
-          "cat_name": "电脑整机",
-          "cat_pid": 266,
-          "cat_level": 1,
-          "cat_deleted": false,
-          "cat_icon": "full/none.jpg",
-          "children": [
-            {
-              "cat_id": 283,
-              "cat_name": "轻薄本",
-              "cat_pid": 281,
-              "cat_level": 2,
-              "cat_deleted": false,
-              "cat_icon": "full/7097160f74842e8640660218a051ec5efdbf3dd9.jpg"
-            }
-          ]
-        }
-      ]
-    }
-  ],
+  "data": [],
   "meta": {
     "msg": "获取成功",
     "status": 200
