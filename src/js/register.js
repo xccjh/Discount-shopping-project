@@ -45,10 +45,12 @@ $(function() {
         mui.toast("手机号码错误");
 
         return;
-      }
+      }  
       //  2 构造参数发送到后台
+      // https://zhengzhicheng.cn/api/public/v1/home/floordata
       $.post(
         "http://api.pyg.ak48.xyz/api/public/v1/users/get_reg_code",
+        // "/api/public/v1/users/get_reg_code",
         {
           mobile: mobile_txt
         },
@@ -138,25 +140,28 @@ $(function() {
       }
 
       // 3.3 构造参数 完成注册
-      $.post("http://api.pyg.ak48.xyz/api/public/v1/users/reg", {
-        mobile: mobile_text,
-        code: code_text,
-        email: email_text,
-        pwd: pwd_text,
-        gender: gender_text
-      },function (result) {
-        console.log(result);
-        if(result.meta.status==200){
-          // 成功
-          mui.toast("注册成功");
-          setTimeout(() => {
-            location.href="login.html";
-          }, 1000);
-        }else{
-         mui.toast(result.meta.msg)
+      $.post(
+        "http://api.pyg.ak48.xyz/api/public/v1/users/reg",
+        {
+          mobile: mobile_text,
+          code: code_text,
+          email: email_text,
+          pwd: pwd_text,
+          gender: gender_text
+        },
+        function(result) {
+          console.log(result);
+          if (result.meta.status == 200) {
+            // 成功
+            mui.toast("注册成功");
+            setTimeout(() => {
+              location.href = "login.html";
+            }, 1000);
+          } else {
+            mui.toast(result.meta.msg);
+          }
         }
-        
-      });
+      );
     });
   }
 

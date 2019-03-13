@@ -86,6 +86,9 @@ gulp.task("autopage", () => {
     // 页面刷新的时候 不要出现 黑色的提示框
     notify:false
   });
+
+
+
   // 监听html文件的改变 从而重新执行 html 任务   刷新浏览器
   gulp.watch(["src/*.html","src/components/*.html"],gulp.series(["html","reload"]));
   // 监听 less文件， 重新执行 css 任务  刷新浏览器
