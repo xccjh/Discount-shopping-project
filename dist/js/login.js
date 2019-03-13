@@ -8,7 +8,11 @@ $(function () {
   2 构造参数  发送请求完成 登录
     1 登录成功
       1 把token存到本地存储中  既然要存数据 干脆 整个result.data 都存起来 方便后期 扩展使用
-      2 登录成功的提示  延迟一会 再跳转页面
+      2 登录成功的提示 
+  3 登录成功
+    1 先判断有没有来源页面  存储在 sessionStorage key pageurl
+    2 有 就跳转到来源页面 
+    3 没有再跳转到 首页 index.html
    */
   init();
 
@@ -50,9 +54,16 @@ $(function () {
           // 2.1  把数据 存入到 本地存储中  存对象的时候 要 先转成json字符串 否则会导致一个数据丢失
           sessionStorage.setItem("userinfo", JSON.stringify(result.data)); // 2.1.2 提示用户 延迟跳转 先 跳到 首页
 
-          mui.toast("登录成功");
+          mui.toast("登录成功"); // 3.1 获取 来源页面
+
+          var pageurl = sessionStorage.getItem("pageurl");
+
+          if (!pageurl) {
+            pageurl = "index.html";
+          }
+
           setTimeout(function () {
-            location.href = "index.html";
+            location.href = pageurl;
           }, 1000);
         } else {
           // 错误

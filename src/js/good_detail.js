@@ -1,5 +1,12 @@
 $(function () {
-
+  /* 
+  1 点击 “加入购物车” tap事件
+    1 获取本地存储中的一个   userinfo
+    2 判断 userinfo 是否为null 
+      1 null 没有登录过    =>   1 弹出对话框 您还没登录 2 延迟跳转页面 登录页面
+    3 登录过了 构造参数 完成 添加到 购物车的功能
+  
+   */
 
   init()
   function init() {
@@ -11,8 +18,22 @@ $(function () {
   function eventList() {
     // 绑定 加入购物车 点击 事件
     $(".shopping_car_btn").on("tap",function () {
-      // 弹出 mui的消息提示框 自动消失
-      mui.toast("您还没有登录");
+      // 1 获取 本地存储中的数据 userinfo sessionStorage
+      // 要么是正常 字符串 要么就是 null
+      let userStr=sessionStorage.getItem("userinfo");
+      // 1.1 判断是否存在
+      if(!userStr){
+        mui.toast("您还没有登录");
+        setTimeout(() => {
+
+          // 把 当前的url存入到会话存储中 方便 登录成功之后 跳回来
+          sessionStorage.setItem("pageurl",location.href);
+
+          location.href="login.html"
+        }, 1000);
+      }else{
+        console.log("已经登录过了 准备添加到购物车");
+      }
       
     })
     
