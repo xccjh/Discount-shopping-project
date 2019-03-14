@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>28-订单</title>
+  <script src="./js/checkPermission.js"></script>
+  <link rel="stylesheet" href="./lib/mui/css/mui.css">
+  <link rel="stylesheet" href="./lib/fontawesome/css/font-awesome.css">
+  <link rel="stylesheet" href="./css/order.css">
+</head>
+<!-- <body class="loadding"> -->
+<body class="">
+  @@include("pyg_nav.html",{"pagename":"订单"})
+
+  <div class="pyg_view">
+    <div id="segmentedControl" class="mui-segmented-control">
+      <a class="mui-control-item mui-active" href="#item1">全部</a>
+      <a class="mui-control-item" href="#item2">待付款</a>
+      <a class="mui-control-item" href="#item3">待发货</a>
+    </div>
+
+    <div>
+      <div id="item1" class="mui-control-content mui-active">
+        <ul>
+
+        </ul>
+      </div>
+      <div id="item2" class="mui-control-content">2</div>
+      <div id="item3" class="mui-control-content">3</div>
+    </div>
+  </div>
+ 
+  @@include("pyg_footer.html")
+
+
+</body>
+
+<script src="./lib/mui/js/mui.js"></script>
+<script src="./lib/zepto/zepto.js"></script>
+
+<script src="./js/common.js"></script>        
+<script src="./js/order.js"></script>
+</html>    
