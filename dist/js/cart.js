@@ -22,6 +22,7 @@ $(function () {
     1 一开始 复选框。数字输入框，删除按钮 都是隐藏
     2 点击 编辑按钮的时候 以上的标签 反复切换 显示 
   5 编辑购物车功能 
+    0 判断购物车有没有数据
     1 明确 我们可以编辑的只有 购买的数量而已 
     2 分析 接口的数据  发送到后台的数据  格式 是和 获取购物车的数据 的格式 完全一样！！！
         但是 需要修改一个属性 amount ==  购买的数量
@@ -30,8 +31,25 @@ $(function () {
       2 获取到所有的li标签身上的 商品对象
       3 把获取到的商品的对象中的字段 amount 动态做改变 变成 数字输入框的值
       4 把每一个商品对象 拼接成一个大对象 
-      5 发送请求 完成编辑 
-   
+    4 发送请求 完成编辑 
+      1 post 需要带上参数  请求头
+      2 成功之后
+        1 弹出 同步成功的 提示
+        2 js 刷新一下数据 再调用一次  cartAll
+   6 删除功能 和编辑功能一样 都是使用 同步接口 
+    0 判断购物车有没有选中要删除的商品
+    1 分析 接口的数据  把 要删除的数据  不要发送到后台去！！！
+    2 把 未被复选框选中的数据 发送到后台去 该格式 和 编辑的时候的格式一致！！！
+    3 绑定 删除 按钮的点击事件
+      1 获取 未被选中的 li标签
+      2 循环
+      3 获取到 li标签的 身上 商品对象
+      4 把商品对象的 购买数量 又 修改成 数字输入框里面的值
+      5 拼接成给一个 大 对象
+      6 发送请求 完成同步
+    7 编辑和删除功能
+      1 只有 要操作的数据 li标签不一样  
+      2 剩下的逻辑 完全一样！！！！
    */
   init();
 
@@ -61,6 +79,10 @@ $(function () {
 
         editCart();
       }
+    }); // 删除按钮
+
+    $(".delete_btn ").on("tap", function () {
+      deleteCart();
     });
   } // 获取购物车数据
 
@@ -91,8 +113,8 @@ $(function () {
           // 以前循环的数据都是数组 但是现在 是对象
           // 数组可以循环 对象可以循环
           // 要传递给模板引擎的数据
-          var cart_info = JSON.parse(result.data.cart_info);
-          console.log(cart_info);
+          var cart_info = JSON.parse(result.data.cart_info); // console.log(cart_info);
+
           var html = template("mainTpl", {
             goodsObj: cart_info
           });
@@ -137,31 +159,109 @@ $(function () {
       var tmp_num = $(li).find(".mui-numbox-input").val();
       total += tmpPrice * tmp_num;
     } // 把总价格 赋值到对应的标签上
+    // console.log(total);
 
 
-    console.log(total);
     $(".total_price").text(total);
   } // 编辑购物车
 
 
   function editCart() {
     // 5.3.1 获取所有的li标签
-    var $lis = $(".order_list li"); // 需要发送到后台的 对象
+    var $lis = $(".order_list li"); // 就判断li标签的数组的长度 等于0 表示 用户还没有购买商品 肯定不让编辑
+
+    if ($lis.length == 0) {
+      mui.toast("您还没有选购商品");
+      return;
+    } // 需要发送到后台的 对象
+
 
     var paramsObj = {}; // 5.3.2 先循环
 
     for (var i = 0; i < $lis.length; i++) {
       // 获取到单个的li标签 dom原生
-      var li = $lis[i]; //  获取li标签身上的 商品对象 以前存放好的 
+      var li = $lis[i]; //  获取li标签身上的 商品对象 以前存放好的
 
       var tmpObj = $(li).data("obj"); // 把最新的购买的数量 赋值到 tmpObj上
 
       tmpObj.amount = $(li).find(".mui-numbox-input").val(); // 给大的对象 赋值
 
       paramsObj[tmpObj.goods_id] = tmpObj;
-    }
+    } // 5.4 准备发送请求到后台 进行 编辑购物车
 
-    console.log(paramsObj);
+
+    var token = JSON.parse(sessionStorage.getItem("userinfo")).token;
+    $.ajax({
+      url: "http://api.pyg.ak48.xyz/api/public/v1/my/cart/sync",
+      type: "post",
+      data: {
+        infos: JSON.stringify(paramsObj)
+      },
+      headers: {
+        Authorization: token
+      },
+      success: function success(result) {
+        // console.log(result);
+        if (result.meta.status == 200) {
+          // 成功
+          mui.toast("同步成功");
+          cartAll();
+        } else {
+          console.log("失败", result);
+        }
+      }
+    });
+  } // 删除购物车
+
+
+  function deleteCart() {
+    // 0 获取被选中的li标签
+    var $lis = $(".order_list .ol_chk:checked").parents("li");
+
+    if ($lis.length == 0) {
+      mui.toast("您还没有选中要删除的商品");
+      return;
+    } // // console.log($lis);
+    // 1 获取未被选中的li标签
+
+
+    var $unLis = $(".order_list .ol_chk").not(":checked").parents("li"); // 需要发送到后台的 对象
+
+    var paramsObj = {}; // 5.3.2 先循环
+
+    for (var i = 0; i < $unLis.length; i++) {
+      // 获取到单个的li标签 dom原生
+      var li = $unLis[i]; //  获取li标签身上的 商品对象 以前存放好的
+
+      var tmpObj = $(li).data("obj"); // 把最新的购买的数量 赋值到 tmpObj上
+
+      tmpObj.amount = $(li).find(".mui-numbox-input").val(); // 给大的对象 赋值
+
+      paramsObj[tmpObj.goods_id] = tmpObj;
+    } // 5.4 准备发送请求到后台 进行 编辑购物车
+
+
+    var token = JSON.parse(sessionStorage.getItem("userinfo")).token;
+    $.ajax({
+      url: "http://api.pyg.ak48.xyz/api/public/v1/my/cart/sync",
+      type: "post",
+      data: {
+        infos: JSON.stringify(paramsObj)
+      },
+      headers: {
+        Authorization: token
+      },
+      success: function success(result) {
+        // console.log(result);
+        if (result.meta.status == 200) {
+          // 成功
+          mui.toast("同步成功");
+          cartAll();
+        } else {
+          console.log("失败", result);
+        }
+      }
+    });
   }
 });
 //# sourceMappingURL=cart.js.map
