@@ -42,7 +42,7 @@
         <div class="price_row_title">总价</div>
         <div class="price_row_content">
           <div class="prc_left">
-            总价: <span>￥ <i>999</i></span>
+            总价: <span>￥ <i class="total_price">999</i></span>
           </div>
           <div class="prc_right">
             <a href="javascript:;">生成订单</a>
@@ -79,9 +79,9 @@
   </body>
   <!-- 模板引擎 开始 -->
   <script id="mainTpl" type="text/html">
-    {{each goodsObj value index}}
+    {{each goodsObj value key}}
 
-    <li>
+    <li data-obj='{{value}}'>
         <!-- 复选框 -->
         <div class="ol_chk_wrap">
           <div class="mui-input-row mui-checkbox">
