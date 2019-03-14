@@ -208,5 +208,15 @@ body {
   padding: 3px;
   color: red;
 }
+#pyg_body .delete_btn,
+#pyg_body .ol_chk_wrap,
+#pyg_body .goods_num_tool {
+  display: none;
+}
+#pyg_body.edit_status .delete_btn,
+#pyg_body.edit_status .ol_chk_wrap,
+#pyg_body.edit_status .goods_num_tool {
+  display: block;
+}
 
 /*# sourceMappingURL=cart.css.map */

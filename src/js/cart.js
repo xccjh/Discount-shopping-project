@@ -14,6 +14,13 @@ $(function() {
     2 点击数字输入框的时候 也是需要计算总价
       1 绑定点击事件
       2 点击触发 再调用 刚才 计算总价的方法
+  4 页面状态的改变
+    0 想 通过给body标签添加一个class 来控制 下面的标签的显示和隐藏   $("body").toggleClass("edit_status");
+      1 当body标签 没有 class  "edit_status"  以下标签就隐藏
+      2 当body标签 有 class  “edit_status”   以下标签就显示
+    1 一开始 复选框。数字输入框，删除按钮 都是隐藏
+    2 点击 编辑按钮的时候 以上的标签 反复切换 显示 
+   
    */
   init();
   function init() {
@@ -26,6 +33,23 @@ $(function() {
       // console.log("被点击了");
       // 调用计算总价格的方法
       additionAll();
+      
+    })
+
+    // 绑定 编辑按钮 点击事件
+    $(".edit_btn").on("tap",function () {
+      console.log("编辑");
+
+      // 切换 添加 class 
+      $("body").toggleClass("edit_status");
+
+      // 判断 如果 body上 有  edit_status 按钮的文本就变成 “完成”
+      // 否则 就是编辑
+      if($("body").hasClass("edit_status")){
+        $(this).text("完成")
+      }else{
+        $(this).text("编辑")
+      }
       
     })
   }
