@@ -20,6 +20,16 @@ $(function() {
       2 当body标签 有 class  “edit_status”   以下标签就显示
     1 一开始 复选框。数字输入框，删除按钮 都是隐藏
     2 点击 编辑按钮的时候 以上的标签 反复切换 显示 
+  5 编辑购物车功能 
+    1 明确 我们可以编辑的只有 购买的数量而已 
+    2 分析 接口的数据  发送到后台的数据  格式 是和 获取购物车的数据 的格式 完全一样！！！
+        但是 需要修改一个属性 amount ==  购买的数量
+    3 构造数据的逻辑
+      1 获取到所有的li标签
+      2 获取到所有的li标签身上的 商品对象
+      3 把获取到的商品的对象中的字段 amount 动态做改变 变成 数字输入框的值
+      4 把每一个商品对象 拼接成一个大对象 
+      5 发送请求 完成编辑 
    
    */
   init();
@@ -27,31 +37,33 @@ $(function() {
     cartAll();
     eventList();
   }
-  function eventList(){
-    // 绑定 数字输入框的编辑按钮点击 事件  +  - 
-    $(".order_list").on("tap"," li .goods_num_tool button",function () {
+  function eventList() {
+    // 绑定 数字输入框的编辑按钮点击 事件  +  -
+    $(".order_list").on("tap", " li .goods_num_tool button", function() {
       // console.log("被点击了");
       // 调用计算总价格的方法
       additionAll();
-      
-    })
+    });
 
     // 绑定 编辑按钮 点击事件
-    $(".edit_btn").on("tap",function () {
-      console.log("编辑");
+    $(".edit_btn").on("tap", function() {
+      // console.log("编辑");
+   
+   
 
-      // 切换 添加 class 
+      // 切换 添加 class
       $("body").toggleClass("edit_status");
 
       // 判断 如果 body上 有  edit_status 按钮的文本就变成 “完成”
       // 否则 就是编辑
-      if($("body").hasClass("edit_status")){
-        $(this).text("完成")
-      }else{
-        $(this).text("编辑")
+      if ($("body").hasClass("edit_status")) {
+        $(this).text("完成");
+      } else {
+        $(this).text("编辑");
+        // 开始同步 数据
+        editCart();
       }
-      
-    })
+    });
   }
 
   // 获取购物车数据
@@ -117,23 +129,46 @@ $(function() {
     // console.log($lis);
 
     // 定义总价
-    let total=0;
+    let total = 0;
     // 2 进行循环
     for (let i = 0; i < $lis.length; i++) {
       // 3.1 获取到每一个 li标签的dom对象  js 原生的dom对象
       let li = $lis[i];
-      // 3.2 获取li标签身上的 商品信息对象   如何通过原生的js 获取 标签上的 data- 属性的值   dom.dataset.属性名 
+      // 3.2 获取li标签身上的 商品信息对象   如何通过原生的js 获取 标签上的 data- 属性的值   dom.dataset.属性名
       // <li data-obj="1233"></li >
       let tmpObj = $(li).data("obj");
       // 获取该商品的单价
-      let tmpPrice=tmpObj.goods_price;
-      // 获取要购买的商品的数量 
-      let tmp_num=$(li).find(".mui-numbox-input").val();
+      let tmpPrice = tmpObj.goods_price;
+      // 获取要购买的商品的数量
+      let tmp_num = $(li)
+        .find(".mui-numbox-input")
+        .val();
 
-      total+=tmpPrice*tmp_num;
+      total += tmpPrice * tmp_num;
     }
     // 把总价格 赋值到对应的标签上
     console.log(total);
     $(".total_price").text(total);
+  }
+
+  // 编辑购物车
+  function editCart() {
+    // 5.3.1 获取所有的li标签
+    let $lis = $(".order_list li");
+
+    // 需要发送到后台的 对象
+    let paramsObj={};
+    // 5.3.2 先循环
+    for (let i = 0; i < $lis.length; i++) {
+      // 获取到单个的li标签 dom原生
+      let li = $lis[i];
+      //  获取li标签身上的 商品对象 以前存放好的 
+      let tmpObj = $(li).data("obj");
+      // 把最新的购买的数量 赋值到 tmpObj上
+      tmpObj.amount=$(li).find(".mui-numbox-input").val();
+      // 给大的对象 赋值
+      paramsObj[tmpObj.goods_id]=tmpObj;
+    }
+    console.log(paramsObj);
   }
 });
