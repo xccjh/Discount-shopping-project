@@ -42,7 +42,7 @@
       <i class="fa fa-list-ul"></i>
       <div class="linkname">分类</div>
     </a>
-    <a href="javascript:;">
+    <a href="cart.html">
       <i class="fa fa-shopping-cart"></i>
       <div class="linkname">购物车</div>
     </a>
@@ -95,7 +95,7 @@
      {{each item1.goods item2 index2}}
      <li>
         <!-- 商品的详情 -->
-        <a href="#" class="goods_detail">
+        <a href="goods_detail.html?goods_id={{item2.goods_id}}" class="goods_detail">
           <!-- 图片 -->
           <img src="{{item2.goods_small_logo}}" class="goods_small_logo" alt="">
           <!-- 名称 -->
