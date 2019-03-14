@@ -49,6 +49,13 @@ $(function() {
     7 编辑和删除功能
       1 只有 要操作的数据 li标签不一样  
       2 剩下的逻辑 完全一样！！！！
+    8 生成订单的分析
+      1 判断有没有商品
+      2 获取所有的li标签
+      3 循环
+      4 循环内部开始构造 goods数据
+      5 在循环的外部 拼接完成 整个接口的参数
+      6 发送请求 完成 创建订单 (当购物车的商品变成了订单之后，刷新购物车页面，再也看不到购物车中的数据 )
    */
   init();
   function init() {
@@ -84,6 +91,72 @@ $(function() {
     // 删除按钮
     $(".delete_btn ").on("tap",function () {
       deleteCart();
+      
+    })
+
+    // 生成订单
+    $(".o_create_btn").on("tap",function () {
+      // 8.1 获取li标签
+      let $lis=$(".order_list li");
+      if($lis.length==0){
+        mui.toast("您还没有选购商品");
+        return;
+      }
+
+      // 构造接口要的参数
+      let createObj={
+        // 总价格
+        order_price:$(".total_price").text(),
+        // 订单地址
+        consignee_addr:"p城",
+        goods:[
+
+        ]
+      };
+      // 8.2 循环
+      for (let i = 0; i < $lis.length; i++) {
+        // 获取li标签身上的 商品对象
+        let li=$lis[i];
+        let before_obj=$(li).data("obj");
+          // 临时的商品对象
+          let tmpObj={};
+          tmpObj.goods_id=before_obj.goods_id;
+          // 购买的数量
+          tmpObj.goods_number=$(li).find(".mui-numbox-input").val();
+          // 单价
+          tmpObj.goods_price=before_obj.goods_price;
+          // 添加到大的对象只能给
+          createObj.goods.push(tmpObj);
+      }
+
+      // 8.6 发送请求 完成 创建订单
+      let token = JSON.parse(sessionStorage.getItem("userinfo")).token;
+  
+      $.ajax({
+        url:"http://api.pyg.ak48.xyz/api/public/v1/my/orders/create",
+        type:"post",
+        data:createObj,
+        headers:{
+          Authorization: token
+        },
+        success:function (result) {
+          if(result.meta.status==200){
+            // 创建成功
+            mui.confirm("要不要跳转到订单页面","创建成功",["跳转","取消"],function (editType) {
+              if(editType.index==0){
+                // 跳转
+                location.href="order.html";
+              }else if(editType.index==1){
+                // 取消
+              }
+              
+            })
+          }else{
+            // 创建失败
+          }
+          
+        }
+      })
       
     })
   }
