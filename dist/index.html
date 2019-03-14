@@ -92,8 +92,8 @@
     <img src="{{item1.group_img}}" alt="" class="group_img">
     <!-- 小商品列表 -->
     <ul class="goods">       
-     {{each item1.goods item2 index2}}
-     <li>
+     {{each item1.goods item2 index2}}         
+     <li>         
         <!-- 商品的详情 -->
         <a href="goods_detail.html?goods_id={{item2.goods_id}}" class="goods_detail">
           <!-- 图片 -->
@@ -108,15 +108,15 @@
       </li>
      {{/each}}
     </ul>
-  </div>
-{{/each}}
-  
-</script>
-<!-- 商品列表 模板 结束 -->
-<!-- 模板引擎 结束 -->
+  </div>    
+{{/each}}    
+         
+</script>    
+<!-- 商品列表 模板   结 束 -->            
+<!-- 模板引擎 结束 -->  
 <script src="./lib/mui/js/mui.js"></script>
 <script src="./lib/zepto/zepto.js"></script>
 <script src="./lib/arttemplate/template-web.js"></script>
-<script src="./js/common.js"></script>
+<script src="./js/common.js"></script>        
 <script src="./js/index.js"></script>
 </html>
